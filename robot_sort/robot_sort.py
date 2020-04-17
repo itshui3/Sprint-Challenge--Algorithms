@@ -97,9 +97,56 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        while(True): # setup
+            if(not self.move_left()): 
+                self.set_light_on()
+                break
+
+        while True:
+            self.swap_item() #Pick up first item
+            # self.set_light_off()
+            while(self.can_move_right()):
+                if(self.compare_item() == -1):
+                    print('item: ', self._item, 'cur_loc_item', self._list[self._position])
+                    self.swap_item()
+                    # self.set_light_on()
+                self.move_right()
+
+            while(self.can_move_left()):
+                if(self.compare_item() == 1):
+                    self.swap_item()
+                self.move_left()
+                
+            #Can't move left
+            #At index[0], perform check
+            self.set_light_off()
+            while(self.can_move_right()):
+                self.move_right()
+                if(self.compare_item() == 1):
+                    self.set_light_on()
+                #return checked out item
+                self.move_left()
+                self.swap_item()
+                #check out next item
+                self.move_right()
+                self.swap_item()
+            
+            self.swap_item()
+
+            if(self.light_is_on()):
+                #Reset Pos
+                while(self.can_move_left()):
+                    self.move_left()
+                continue
+            else:
+                break
 
 
+
+# robot = SortingRobot([5, 4, 3, 2, 1, 0])
+# robot.sort()
+
+# print(robot._list)
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
