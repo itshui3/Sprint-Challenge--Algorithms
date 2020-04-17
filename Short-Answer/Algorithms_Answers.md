@@ -20,7 +20,8 @@ The while loop inside also uses n to determine when to stop. However, the iterat
 As it is nested within the n time complexity loop, the number of times this is run becomes multiplied by n, thus: O(n * log n)
 
 
-c)
+c) O(n)
+A recursive function is run that repeatedly passes in an integer of one less until the integer becomes 0, at which point the recursion ends. Written out this way, it is clear that the time complexity is : O(n)
 
 ## Exercise II
 
