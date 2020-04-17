@@ -14,7 +14,10 @@ ie. if n = 3
 27 / 9 = 3
 
 
-b)
+b) O(n log n)
+Within this problem are two iterative loops. The outer loop runs a time complexity of O(n) because the number of iterations in a for in with the range set to (n) will run in linear time respective to the size of 'n' input. 
+The while loop inside also uses n to determine when to stop. However, the iterator is doubled each time. Because EACH iteration of this loop doubles the count of 'j', this makes the time complexity of the inner loop O(log n)
+As it is nested within the n time complexity loop, the number of times this is run becomes multiplied by n, thus: O(n * log n)
 
 
 c)
