@@ -97,10 +97,7 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        while(True): # setup
-            if(not self.move_left()): 
-                self.set_light_on()
-                break
+        while self.can_move_left(): self.move_left() #Set-up
 
         while True:
             self.swap_item() #Pick up first item
