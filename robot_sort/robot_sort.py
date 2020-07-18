@@ -98,32 +98,45 @@ class SortingRobot:
         """
         # Fill this out
         self.set_light_on()
-
-        while self._light == 'ON':
-            self.set_light_off()
+        self.swap_item()
+        while self.light_is_on():
+            if not self.can_move_left(): self.set_light_off()
+# held > self._list[self._position]: 1
+# held < self._list[self._position]: -1
 
             while self.can_move_right():
-                # grab item
-                # move to the right
-                # compare
-                # if held bigger, swap and put smaller item in prev place before moving one to the right
-                # if held smaller, put smaller item back in prev place before moving one to the right
-                self.swap_item()
                 self.move_right()
 
                 if self.compare_item() == 1:
                     self.set_light_on()
+                    continue
+
+                if self.compare_item() == 0:
+                    continue
+
+                if self.compare_item() == -1 and self.can_move_right():
                     self.swap_item()
-                    self.move_left()
-                    self.swap_item()
-                    self.move_right()
-                elif self.compare_item() < 1:
-                    self.move_left()
-                    self.swap_item()
-                    self.move_right()
+                    continue
+
+            if self.compare_item() == 1: 
+                self.set_light_on()
+                self.swap_item()
 
             while self.can_move_left():
                 self.move_left()
+
+                if self.compare_item() == -1:
+                    self.set_light_on()
+                    continue
+
+                if self.compare_item() == 0:
+                    continue
+
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    continue
+
+            if not self.light_is_on(): self.swap_item()
 
 
 if __name__ == "__main__":
